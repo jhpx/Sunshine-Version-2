@@ -15,3 +15,10 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+# What we’re telling ProGuard is this: remove every use of a d() method with any
+# amount of parameters that returns something and belongs to the android.util.Log
+# class. This will match with Log’s d() method and every debug log will be removed.
+-assumenosideeffects class android.util.Log {
+public static *** d(...);
+}
