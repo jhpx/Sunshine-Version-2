@@ -45,7 +45,7 @@ public class DetailActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this,SettingsActivity.class));
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
 
@@ -97,7 +97,7 @@ public class DetailActivity extends ActionBarActivity {
 
             // Attach an intent to this ShareActionProvider.  You can update this at any time,
             // like when the user selects a new piece of data they might like to share.
-            if (mShareActionProvider != null ) {
+            if (mShareActionProvider != null) {
                 mShareActionProvider.setShareIntent(createShareForecastIntent());
             } else {
                 Log.d(LOG_TAG, "Share Action Provider is null?");

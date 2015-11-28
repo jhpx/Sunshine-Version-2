@@ -121,7 +121,7 @@ public class ForecastFragment extends Fragment {
         super.onStart();
         updateWeather();
     }
-    
+
     public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
 
         private final String LOG_TAG = FetchWeatherTask.class.getSimpleName();
@@ -207,7 +207,7 @@ public class ForecastFragment extends Fragment {
                     getString(R.string.pref_units_key),
                     getString(R.string.pref_units_metric));
 
-            for(int i = 0; i < weatherArray.length(); i++) {
+            for (int i = 0; i < weatherArray.length(); i++) {
                 // For now, using the format "Day, description, hi/low"
                 String day;
                 String description;
