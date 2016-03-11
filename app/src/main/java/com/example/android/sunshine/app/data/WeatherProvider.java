@@ -177,17 +177,15 @@ public class WeatherProvider extends ContentProvider {
         Cursor retCursor;
         switch (sUriMatcher.match(uri)) {
             // "weather/*/*"
-            case WEATHER_WITH_LOCATION_AND_DATE: {
+            case WEATHER_WITH_LOCATION_AND_DATE:
                 retCursor = getWeatherByLocationSettingAndDate(uri, projection, sortOrder);
                 break;
-            }
             // "weather/*"
-            case WEATHER_WITH_LOCATION: {
+            case WEATHER_WITH_LOCATION:
                 retCursor = getWeatherByLocationSetting(uri, projection, sortOrder);
                 break;
-            }
             // "weather"
-            case WEATHER: {
+            case WEATHER:
                 retCursor = mOpenHelper.getReadableDatabase().query(
                         WeatherContract.WeatherEntry.TABLE_NAME,
                         projection,
@@ -198,9 +196,8 @@ public class WeatherProvider extends ContentProvider {
                         sortOrder
                 );
                 break;
-            }
             // "location"
-            case LOCATION: {
+            case LOCATION:
                 retCursor = mOpenHelper.getReadableDatabase().query(
                         WeatherContract.LocationEntry.TABLE_NAME,
                         projection,
@@ -211,7 +208,6 @@ public class WeatherProvider extends ContentProvider {
                         sortOrder
                 );
                 break;
-            }
 
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
@@ -263,16 +259,16 @@ public class WeatherProvider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         int rowsDeleted;
         // this makes delete all rows return the number of rows deleted
-        if ( null == selection ) selection = "1";
+        if (null == selection) selection = "1";
         switch (match) {
-            case WEATHER: {
-                rowsDeleted = db.delete(WeatherContract.WeatherEntry.TABLE_NAME, selection, selectionArgs);
+            case WEATHER:
+                rowsDeleted = db.delete(
+                        WeatherContract.WeatherEntry.TABLE_NAME, selection, selectionArgs);
                 break;
-            }
-            case LOCATION: {
-                rowsDeleted = db.delete(WeatherContract.LocationEntry.TABLE_NAME, selection, selectionArgs);
+            case LOCATION:
+                rowsDeleted = db.delete(
+                        WeatherContract.LocationEntry.TABLE_NAME, selection, selectionArgs);
                 break;
-            }
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -300,15 +296,15 @@ public class WeatherProvider extends ContentProvider {
         int rowsUpdated;
 
         switch (match) {
-            case WEATHER: {
+            case WEATHER:
                 normalizeDate(values);
-                rowsUpdated = db.update(WeatherContract.WeatherEntry.TABLE_NAME, values, selection, selectionArgs);
+                rowsUpdated = db.update(WeatherContract.WeatherEntry.TABLE_NAME, values, selection,
+                        selectionArgs);
                 break;
-            }
-            case LOCATION: {
-                rowsUpdated = db.update(WeatherContract.LocationEntry.TABLE_NAME, values, selection, selectionArgs);
+            case LOCATION:
+                rowsUpdated = db.update(WeatherContract.LocationEntry.TABLE_NAME, values, selection,
+                        selectionArgs);
                 break;
-            }
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
